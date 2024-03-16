@@ -1,0 +1,27 @@
+namespace:
+  name: disclosures
+
+image:
+  repository: travops87/official-disclosure:latest
+  pullPolicy: Always
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 80
+
+config:
+  legislators_url: "https://example.com/legislators-data"
+
+postgres:
+  service:
+    name: official-list-postgres
+    namespace: official-list
+  database: official
+  username: admin
+  password: admin
+  port: 5432
+  secretName: official-list-postgres
+
+

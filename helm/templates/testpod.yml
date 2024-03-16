@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubectl-psql-pod
+  namespace: disclosures
+spec:
+  containers:
+  - name: kubectl-psql
+    image: postgres
+    command:
+    - sleep
+    - "3600"
