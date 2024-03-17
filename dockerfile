@@ -19,4 +19,4 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Set the command to run the script
-CMD ["python", "service.py"]
+CMD ["python", "service_test.py"]
