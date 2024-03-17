@@ -15,13 +15,11 @@ config:
   legislators_url: "https://example.com/legislators-data"
 
 postgres:
+  namespace: postgres
   service:
-    name: official-list-postgres
+    name: postgres
     namespace: official-list
   database: official
   username: admin
   password: admin
   port: 5432
-  secretName: official-list-postgres
-
-

@@ -1,6 +1,3 @@
 kubernetes
 sqlalchemy
-logging
-random
-os
-time
+psycopg2-binary

@@ -24,7 +24,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: POSTGRES_HOST
-              value: {{ printf "%s.%s.svc.cluster.local" .Values.postgres.service.name .Values.postgres.service.namespace }}
+              value: "postgres-postgres.{{ .Values.postgres.namespace }}.svc.cluster.local"
             - name: POSTGRES_PORT
               value: "{{ .Values.postgres.port }}"
             - name: POSTGRES_DB

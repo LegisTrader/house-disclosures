@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 # Get the PostgreSQL connection details from environment variables
 db_host = os.environ.get('POSTGRES_HOST')
-db_port = os.environ.get('OFFICIAL_DISCLOSURE_SERVICE_PORT_5432_TCP_ADDR')
+db_port = os.environ.get('POSTGRES_PORT')
 db_name = os.environ.get('POSTGRES_DB')
 db_user = os.environ.get('POSTGRES_USER')
 db_password = os.environ.get('POSTGRES_PASSWORD')
@@ -29,19 +29,21 @@ try:
     while True:
         # Create a session
         session = Session()
-
         try:
-            # Execute a SELECT query to fetch random data from the "legislators" table
-            random_legislator = session.execute(select([legislators_table]).order_by(func.random()).limit(1)).fetchone()
-            logger.info(f'Random Legislator: {random_legislator}')
-
+            # Execute a SELECT * query to fetch 10 rows from the "legislators" table
+            legislators = session.execute(select(legislators_table).limit(10)).fetchall()
+            
+            # Log the fetched legislators
+            for legislator in legislators:
+                logger.info(f'Legislator: {legislator}')
+        
         except Exception as e:
             logger.error(f'Error executing query: {e}')
-
+        
         finally:
             # Close the session
             session.close()
-
+        
         # Sleep for 5 seconds
         time.sleep(5)
 
