@@ -4,7 +4,7 @@ This repository contains the deployment configurations for the Official Disclosu
 
 ## Overview
 
-The Official Disclosure Service is designed to iterate through a list of US representatives and check for newly disclosed stock trades. The list it iterates through is created and maintained by a separate microservice that can be found here [Officials List Microservice](https://github.com/Travbz/officials-list). It is currently a work in progress.
+The Official Disclosure Service is designed to iterate through a list of US representatives and check for newly disclosed stock trades. The list it iterates through is created and maintained by a separate microservice that can be found here [Officials List Microservice](https://github.com/LegisTrader/reps_list). It is currently a work in progress.
 
 ## Prerequisites
 
