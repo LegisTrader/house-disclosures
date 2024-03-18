@@ -1,5 +1,5 @@
 namespace:
-  name: disclosures
+  name: house
 
 image:
   repository: travops87/official-disclosure:latest

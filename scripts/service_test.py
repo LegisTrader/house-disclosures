@@ -1,7 +1,7 @@
 import os
 import logging
 import time
-from sqlalchemy import create_engine, MetaData, Table, select
+from sqlalchemy import create_engine, MetaData, Table, select, func
 from sqlalchemy.orm import sessionmaker
 
 # Set up logging
@@ -26,26 +26,29 @@ metadata = MetaData()
 legislators_table = Table('legislators', metadata, autoload_with=engine)
 
 try:
-    while True:
-        # Create a session
-        session = Session()
-        try:
-            # Execute a SELECT * query to fetch 10 rows from the "legislators" table
-            legislators = session.execute(select(legislators_table).limit(10)).fetchall()
+    # Create a session
+    session = Session()
+    
+    try:
+        # Execute a SELECT * query to fetch all rows from the "legislators" table
+        legislators = session.query(legislators_table).all()
+        
+        while True:
+            # Select a random legislator from the fetched rows
+            random_legislator = session.query(legislators_table).order_by(func.random()).limit(1).first()
             
-            # Log the fetched legislators
-            for legislator in legislators:
-                logger.info(f'Legislator: {legislator}')
-        
-        except Exception as e:
-            logger.error(f'Error executing query: {e}')
-        
-        finally:
-            # Close the session
-            session.close()
-        
-        # Sleep for 5 seconds
-        time.sleep(5)
+            # Log the random legislator
+            logger.info(f'Random Legislator: {random_legislator}')
+            
+            # Sleep for 5 seconds
+            time.sleep(5)
+    
+    except Exception as e:
+        logger.error(f'Error executing query: {e}')
+    
+    finally:
+        # Close the session
+        session.close()
 
 except Exception as e:
     logger.error(f'An error occurred: {e}')

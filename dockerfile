@@ -5,7 +5,7 @@ FROM python:3.8-slim
 WORKDIR /app
 
 # Copy the refactored cron.py script and requirements.txt
-COPY /scripts/service.py .
+COPY /scripts/service_test.py .
 COPY requirements.txt .
 
 # Install system dependencies

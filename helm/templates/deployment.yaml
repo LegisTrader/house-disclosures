@@ -7,18 +7,18 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: official-disclosure
+      app: house
   template:
     metadata:
       labels:
-        app: official-disclosure
+        app: house
       annotations:
         "helm.sh/hook": pre-install
         "helm.sh/hook-weight": "-10"
     spec:
       serviceAccountName: {{ .Release.Name }}-service-account
       containers:
-        - name: official-disclosure
+        - name: house
           image: {{ .Values.image.repository }}
           # command: ["sleep", "3600"]  
           imagePullPolicy: {{ .Values.image.pullPolicy }}

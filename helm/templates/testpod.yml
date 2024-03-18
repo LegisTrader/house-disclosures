@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: kubectl-psql-pod
-  namespace: disclosures
+  namespace: {{ .Values.namespace.name }}
 spec:
   containers:
   - name: kubectl-psql
